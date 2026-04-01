@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Modern New Tab - AI Enhanced",
   "version": "1.1.0",
-  "description": "A beautiful, customizable new tab page with AI search, notes, weather, and more",
+  "description": "A beautiful new tab page with custom icons, 15 HD wallpapers, and AI search",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -12,12 +12,7 @@
     "newtab": "newtab.html"
   },
   "permissions": [
-    "storage",
-    "bookmarks",
-    "topSites"
-  ],
-  "host_permissions": [
-    "https://api.openweathermap.org/*"
+    "storage"
   ],
   "background": {
     "service_worker": "background.js"
