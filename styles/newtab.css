@@ -513,6 +513,8 @@ body {
 .gallery-modal {
   max-width: 900px;
   width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal-header {
@@ -522,6 +524,50 @@ body {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+/* Custom Wallpaper Section */
+.custom-wallpaper-section {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.wallpaper-url-input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.wallpaper-url-input:focus {
+  border-color: #667eea;
+}
+
+.wallpaper-url-input::placeholder {
+  color: #999;
+}
+
+/* Wallpaper Sections */
+.wallpaper-section {
+  margin-bottom: 2rem;
+}
+
+.wallpaper-section h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #666;
+  font-weight: 600;
 }
 
 .wallpaper-grid {
@@ -566,6 +612,49 @@ body {
 
 .wallpaper-item:hover .wallpaper-name {
   opacity: 1;
+}
+
+/* Custom Wallpaper Delete Button */
+.wallpaper-delete {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(255, 0, 0, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.wallpaper-item.custom:hover .wallpaper-delete {
+  opacity: 1;
+}
+
+.wallpaper-delete:hover {
+  background: rgba(255, 0, 0, 1);
+  transform: scale(1.1);
+}
+
+/* Custom Wallpaper Badge */
+.wallpaper-item.custom::before {
+  content: '⭐';
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.3rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  z-index: 5;
 }
 
 /* Responsive */

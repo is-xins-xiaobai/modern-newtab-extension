@@ -38,7 +38,8 @@ let settings = {
   backgroundType: 'cover',
   clockFormat: '24',
   searchEngine: 'google',
-  quickLinks: []
+  quickLinks: [],
+  customWallpapers: [] // 用户自定义的壁纸
 };
 
 // 初始化
@@ -543,7 +544,33 @@ function showWallpaperGallery() {
         <h3>Background Gallery</h3>
         <button class="close-btn" id="close-gallery">×</button>
       </div>
-      <div class="wallpaper-grid">
+      
+      <!-- Add Custom Wallpaper Section -->
+      <div class="custom-wallpaper-section">
+        <input type="text" id="custom-wallpaper-url" placeholder="Enter image URL or paste image" class="wallpaper-url-input">
+        <button id="add-custom-wallpaper" class="btn-primary">+ Add Custom</button>
+      </div>
+      
+      <!-- My Wallpapers Section (if any) -->
+      ${settings.customWallpapers && settings.customWallpapers.length > 0 ? `
+        <div class="wallpaper-section">
+          <h4>My Wallpapers</h4>
+          <div class="wallpaper-grid" id="custom-wallpapers-grid">
+            ${settings.customWallpapers.map((wallpaper, index) => `
+              <div class="wallpaper-item custom" data-custom-index="${index}">
+                <img src="${wallpaper.url}" alt="${wallpaper.name || 'Custom'}" loading="lazy">
+                <div class="wallpaper-name">${wallpaper.name || 'Custom ' + (index + 1)}</div>
+                <button class="wallpaper-delete" data-custom-index="${index}">×</button>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+      
+      <!-- Built-in Wallpapers -->
+      <div class="wallpaper-section">
+        <h4>Built-in Gallery</h4>
+        <div class="wallpaper-grid" id="builtin-wallpapers-grid">
   `;
   
   WALLPAPER_GALLERY.forEach((wallpaper, index) => {
@@ -555,7 +582,10 @@ function showWallpaperGallery() {
     `;
   });
   
-  galleryHTML += `</div></div>`;
+  galleryHTML += `
+        </div>
+      </div>
+    </div>`;
   modal.innerHTML = galleryHTML;
   document.body.appendChild(modal);
   
@@ -563,9 +593,93 @@ function showWallpaperGallery() {
     modal.remove();
   });
   
-  document.querySelectorAll('.wallpaper-item').forEach(item => {
+  // Add custom wallpaper
+  const customUrlInput = document.getElementById('custom-wallpaper-url');
+  const addCustomBtn = document.getElementById('add-custom-wallpaper');
+  
+  addCustomBtn.addEventListener('click', () => {
+    const url = customUrlInput.value.trim();
+    if (!url) {
+      alert('Please enter an image URL');
+      return;
+    }
+    
+    // Validate URL
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      alert('Please enter a valid URL starting with http:// or https://');
+      return;
+    }
+    
+    // Test if image loads
+    const testImg = new Image();
+    testImg.onload = () => {
+      const name = prompt('Name this wallpaper (optional):') || `Custom ${(settings.customWallpapers?.length || 0) + 1}`;
+      
+      if (!settings.customWallpapers) settings.customWallpapers = [];
+      settings.customWallpapers.push({
+        name,
+        url,
+        thumbnail: url
+      });
+      
+      settings.backgroundUrl = url;
+      settings.backgroundType = 'cover';
+      saveSettings();
+      applyBackground();
+      
+      const bgUrlInput = document.getElementById('bg-url-input');
+      if (bgUrlInput) bgUrlInput.value = url;
+      
+      modal.remove();
+    };
+    
+    testImg.onerror = () => {
+      alert('Failed to load image. Please check the URL.');
+    };
+    
+    testImg.src = url;
+  });
+  
+  // Handle Enter key
+  customUrlInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') addCustomBtn.click();
+  });
+  
+  // Delete custom wallpaper
+  document.querySelectorAll('.wallpaper-delete').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const index = parseInt(btn.dataset.customIndex);
+      if (confirm('Delete this wallpaper?')) {
+        settings.customWallpapers.splice(index, 1);
+        saveSettings();
+        modal.remove();
+        showWallpaperGallery(); // Refresh gallery
+      }
+    });
+  });
+  
+  // Select custom wallpaper
+  document.querySelectorAll('.wallpaper-item.custom').forEach(item => {
     item.addEventListener('click', () => {
-      const index = item.dataset.index;
+      const index = parseInt(item.dataset.customIndex);
+      const wallpaper = settings.customWallpapers[index];
+      settings.backgroundUrl = wallpaper.url;
+      settings.backgroundType = 'cover';
+      saveSettings();
+      applyBackground();
+      
+      const bgUrlInput = document.getElementById('bg-url-input');
+      if (bgUrlInput) bgUrlInput.value = wallpaper.url;
+      
+      modal.remove();
+    });
+  });
+  
+  // Select built-in wallpaper
+  document.querySelectorAll('.wallpaper-item:not(.custom)').forEach(item => {
+    item.addEventListener('click', () => {
+      const index = parseInt(item.dataset.index);
       const wallpaper = WALLPAPER_GALLERY[index];
       settings.backgroundUrl = wallpaper.url;
       settings.backgroundType = 'cover';
