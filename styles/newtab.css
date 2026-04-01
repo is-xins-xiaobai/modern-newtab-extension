@@ -194,16 +194,51 @@ body {
   color: white;
   border: none;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 0.8rem;
+  width: 24px;
+  height: 24px;
+  font-size: 0.9rem;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
 }
 
-.link-item:hover .link-remove {
+.link-edit {
+  position: absolute;
+  top: 0.3rem;
+  right: 2rem;
+  background: rgba(102, 126, 234, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.link-item:hover .link-remove,
+.link-item:hover .link-edit {
   opacity: 1;
+}
+
+.link-remove:hover {
+  background: rgba(255, 0, 0, 1);
+  transform: scale(1.1);
+}
+
+.link-edit:hover {
+  background: rgba(102, 126, 234, 1);
+  transform: scale(1.1);
 }
 
 .add-link-btn {

@@ -193,7 +193,17 @@ function initQuickLinks() {
       }
     };
     
+    const editBtn = document.createElement('button');
+    editBtn.className = 'link-edit';
+    editBtn.textContent = '✎';
+    editBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      showEditLinkDialog(link, index);
+    };
+    
     div.appendChild(removeBtn);
+    div.appendChild(editBtn);
     div.appendChild(icon);
     div.appendChild(title);
     
@@ -203,6 +213,143 @@ function initQuickLinks() {
   addBtn.addEventListener('click', () => {
     showAddLinkDialog();
   });
+  
+  function showEditLinkDialog(link, index) {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    
+    // 判断当前图标类型
+    let currentIconType = 'auto';
+    let currentIconValue = '';
+    
+    if (link.icon.startsWith('http') && !link.icon.includes('favicons')) {
+      currentIconType = 'url';
+      currentIconValue = link.icon;
+    } else if (!link.icon.startsWith('http')) {
+      currentIconType = 'emoji';
+      currentIconValue = link.icon;
+    }
+    
+    modal.innerHTML = `
+      <div class="modal-content">
+        <h3>Edit Site</h3>
+        <div class="form-group">
+          <label>Site Name:</label>
+          <input type="text" id="link-title" value="${link.title}" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>URL:</label>
+          <input type="url" id="link-url" value="${link.url}" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Icon Type:</label>
+          <select id="icon-type">
+            <option value="auto" ${currentIconType === 'auto' ? 'selected' : ''}>Auto (Favicon)</option>
+            <option value="emoji" ${currentIconType === 'emoji' ? 'selected' : ''}>Emoji</option>
+            <option value="url" ${currentIconType === 'url' ? 'selected' : ''}>Custom URL</option>
+          </select>
+        </div>
+        <div class="form-group" id="icon-input-group" style="display: ${currentIconType !== 'auto' ? 'block' : 'none'};">
+          <label id="icon-label">${currentIconType === 'emoji' ? 'Emoji:' : 'Icon URL:'}</label>
+          <input type="text" id="link-icon" value="${currentIconValue}" placeholder="🌐 or https://..." autocomplete="off">
+        </div>
+        <div class="icon-preview" id="icon-preview"></div>
+        <div class="modal-buttons">
+          <button class="btn-primary" id="save-link-btn">Save Changes</button>
+          <button class="btn-secondary" id="cancel-link-btn">Cancel</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    
+    const titleInput = document.getElementById('link-title');
+    const urlInput = document.getElementById('link-url');
+    const iconType = document.getElementById('icon-type');
+    const iconInput = document.getElementById('link-icon');
+    const iconInputGroup = document.getElementById('icon-input-group');
+    const iconLabel = document.getElementById('icon-label');
+    const iconPreview = document.getElementById('icon-preview');
+    const saveBtn = document.getElementById('save-link-btn');
+    const cancelBtn = document.getElementById('cancel-link-btn');
+    
+    titleInput.focus();
+    titleInput.select();
+    
+    // 初始预览
+    updateIconPreview();
+    
+    iconType.addEventListener('change', () => {
+      if (iconType.value === 'auto') {
+        iconInputGroup.style.display = 'none';
+        iconInput.value = '';
+      } else {
+        iconInputGroup.style.display = 'block';
+        iconLabel.textContent = iconType.value === 'emoji' ? 'Emoji:' : 'Icon URL:';
+        iconInput.placeholder = iconType.value === 'emoji' ? '🌐' : 'https://...';
+      }
+      updateIconPreview();
+    });
+    
+    function updateIconPreview() {
+      const url = urlInput.value.trim();
+      const type = iconType.value;
+      const icon = iconInput.value.trim();
+      
+      if (type === 'auto' && url) {
+        const domain = url.replace(/^https?:\/\//, '').split('/')[0];
+        iconPreview.innerHTML = `<img src="https://www.google.com/s2/favicons?domain=${domain}&sz=256" alt="Preview">`;
+      } else if (type === 'emoji' && icon) {
+        iconPreview.innerHTML = `<div class="emoji-preview">${icon}</div>`;
+      } else if (type === 'url' && icon) {
+        iconPreview.innerHTML = `<img src="${icon}" alt="Preview" onerror="this.src='https://via.placeholder.com/64?text=Error'">`;
+      } else {
+        iconPreview.innerHTML = '';
+      }
+    }
+    
+    urlInput.addEventListener('input', updateIconPreview);
+    iconInput.addEventListener('input', updateIconPreview);
+    
+    saveBtn.addEventListener('click', () => {
+      const title = titleInput.value.trim();
+      const url = urlInput.value.trim();
+      
+      if (!title || !url) {
+        alert('Please enter both site name and URL');
+        return;
+      }
+      
+      let iconValue;
+      const type = iconType.value;
+      const fullUrl = url.startsWith('http') ? url : 'https://' + url;
+      const domain = fullUrl.replace(/^https?:\/\//, '').split('/')[0];
+      
+      if (type === 'auto') {
+        iconValue = `https://www.google.com/s2/favicons?domain=${domain}&sz=256`;
+      } else if (type === 'emoji') {
+        iconValue = iconInput.value.trim() || '🌐';
+      } else {
+        iconValue = iconInput.value.trim() || `https://www.google.com/s2/favicons?domain=${domain}&sz=256`;
+      }
+      
+      // 更新链接
+      settings.quickLinks[index] = { title, url: fullUrl, icon: iconValue };
+      saveSettings();
+      renderLinks();
+      modal.remove();
+    });
+    
+    cancelBtn.addEventListener('click', () => modal.remove());
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.remove();
+    });
+    
+    [titleInput, urlInput, iconInput].forEach(input => {
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') saveBtn.click();
+      });
+    });
+  }
   
   function showAddLinkDialog() {
     const modal = document.createElement('div');
