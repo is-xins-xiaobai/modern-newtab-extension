@@ -48,39 +48,16 @@
       <div id="quick-links" class="quick-links"></div>
       <button id="add-link-btn" class="add-link-btn">+ Add Site</button>
     </div>
-
-    <!-- Weather Widget -->
-    <div id="weather-widget" class="weather-widget">
-      <div class="weather-icon">🌤️</div>
-      <div class="weather-temp">--°C</div>
-      <div class="weather-location">Loading...</div>
-    </div>
-
-    <!-- Quick Notes Panel -->
-    <div id="notes-panel" class="notes-panel hidden">
-      <div class="panel-header">
-        <h3>Quick Notes</h3>
-        <button id="close-notes" class="close-btn">×</button>
-      </div>
-      <textarea id="notes-textarea" placeholder="Type your notes here..."></textarea>
-    </div>
   </div>
 
-  <!-- Toolbar -->
-  <div class="toolbar">
-    <button id="notes-btn" class="toolbar-btn" title="Notes">
-      📝
-    </button>
-    <button id="bookmarks-btn" class="toolbar-btn" title="Bookmarks">
-      🔖
-    </button>
-    <button id="weather-btn" class="toolbar-btn" title="Weather">
-      🌤️
-    </button>
-    <button id="settings-btn" class="toolbar-btn" title="Settings">
-      ⚙️
-    </button>
-  </div>
+  <!-- Floating Buttons -->
+  <button id="show-gallery-btn" class="floating-btn floating-gallery-btn" title="Change Wallpaper">
+    🖼️
+  </button>
+  
+  <button id="settings-btn" class="floating-btn floating-settings-btn" title="Settings">
+    ⚙️
+  </button>
 
   <!-- Settings Panel -->
   <div id="settings-panel" class="settings-panel hidden">
@@ -90,13 +67,9 @@
     </div>
     <div class="settings-content">
       <div class="setting-item">
-        <label>Background Image:</label>
-        <button id="show-gallery-btn" class="btn-primary">📷 Choose from Gallery</button>
-      </div>
-      <div class="setting-item">
-        <label>Or enter custom URL:</label>
+        <label>Custom Background URL:</label>
         <input type="text" id="bg-url-input" placeholder="https://example.com/image.jpg">
-        <button id="save-bg-btn" class="btn-primary">Save Custom URL</button>
+        <button id="save-bg-btn" class="btn-primary">Save</button>
       </div>
       <div class="setting-item">
         <label>Background Type:</label>
