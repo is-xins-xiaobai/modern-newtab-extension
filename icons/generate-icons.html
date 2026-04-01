@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Icon Generator</title>
+</head>
+<body>
+  <h2>Icon Generator - Right click each canvas and "Save image as..."</h2>
+  
+  <div>
+    <h3>128x128</h3>
+    <canvas id="icon128" width="128" height="128"></canvas>
+  </div>
+  
+  <div>
+    <h3>48x48</h3>
+    <canvas id="icon48" width="48" height="48"></canvas>
+  </div>
+  
+  <div>
+    <h3>16x16</h3>
+    <canvas id="icon16" width="16" height="16"></canvas>
+  </div>
+
+  <script>
+    function drawIcon(canvas) {
+      const ctx = canvas.getContext('2d');
+      const size = canvas.width;
+      
+      // Gradient background
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#667eea');
+      gradient.addColorStop(1, '#764ba2');
+      
+      // Background
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, size, size);
+      
+      // White grid
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      const padding = size * 0.2;
+      const cellSize = (size - 2 * padding - size * 0.05) / 2;
+      const gap = size * 0.05;
+      const radius = size * 0.03;
+      
+      for (let i = 0; i < 2; i++) {
+        for (let j = 0; j < 2; j++) {
+          const x = padding + i * (cellSize + gap);
+          const y = padding + j * (cellSize + gap);
+          
+          ctx.beginPath();
+          ctx.roundRect(x, y, cellSize, cellSize, radius);
+          ctx.fill();
+        }
+      }
+      
+      // Small circle in center
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      ctx.arc(size / 2, size / 2, size * 0.06, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    
+    drawIcon(document.getElementById('icon128'));
+    drawIcon(document.getElementById('icon48'));
+    drawIcon(document.getElementById('icon16'));
+  </script>
+</body>
+</html>

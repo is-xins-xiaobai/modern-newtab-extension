@@ -1,0 +1,126 @@
+# Chrome Web Store Listing Information
+
+## Extension Name
+Modern New Tab - AI Enhanced
+
+## Tagline (short description - 132 characters max)
+Beautiful new tab with custom icons, 15 HD wallpapers, notes & ChatGPT search. Boost productivity!
+
+## Detailed Description
+
+Transform your browsing experience with Modern New Tab!
+
+✨ KEY FEATURES:
+
+🎨 ADVANCED ICON SYSTEM
+• Auto Mode: High-res favicons (128x128)
+• Emoji Mode: Any emoji as icons
+• Custom Mode: Your own images
+• Real-time preview before adding
+
+🖼️ BEAUTIFUL WALLPAPER GALLERY
+• 15 curated HD wallpapers
+• One-click switching
+• Categories: Nature, City, Abstract, Minimal
+• Custom URL support
+
+🔍 SMART SEARCH
+• Multiple engines: Google, Bing, DuckDuckGo
+• ChatGPT AI search integration
+• Keyboard shortcut: Press "/" to search
+• Remember your preferred engine
+
+📝 QUICK TOOLS
+• Auto-save notes panel
+• Live weather widget (auto-location)
+• Real-time clock (12/24 hour format)
+• Customizable settings
+
+⚡ PRODUCTIVITY FEATURES
+• Quick links with custom icons
+• Keyboard shortcuts
+• Fast loading (< 1 second)
+• Responsive design
+
+🔐 PRIVACY FIRST
+• NO tracking or analytics
+• NO data collection
+• All data stays local
+• Manifest V3 compliant
+• Open source
+
+Perfect for:
+✓ Students organizing study materials
+✓ Developers accessing tools quickly
+✓ Professionals boosting productivity
+✓ Anyone who loves a beautiful browser
+
+---
+
+HOW TO USE:
+
+1. Install the extension
+2. Open a new tab
+3. Click ⚙️ to choose a wallpaper from gallery
+4. Click "+ Add Site" to add your favorite websites
+5. Choose icon type: Auto, Emoji, or Custom
+6. Press "/" to search instantly
+
+---
+
+WHY CHOOSE MODERN NEW TAB?
+
+• 3 icon modes (industry first!)
+• Built-in wallpaper gallery (15 HD images)
+• Real-time preview (see before you add)
+• ChatGPT search (AI-powered)
+• Complete documentation
+• Active development
+• Privacy guaranteed
+
+---
+
+TECHNICAL DETAILS:
+
+• Manifest V3 (latest Chrome standard)
+• No external dependencies
+• Lightweight (< 100KB)
+• Fast performance
+• Cross-browser compatible
+• Regular updates
+
+---
+
+SUPPORT:
+
+Need help? We're here!
+• Check built-in documentation
+• Visit our website
+• Email: support@example.com
+
+---
+
+OPEN SOURCE:
+
+This extension is open source! Check out the code, contribute, or report issues on GitHub.
+
+---
+
+YOUR PRIVACY MATTERS:
+
+We don't collect ANY data. Everything stays on your device. Read our full privacy policy for details.
+
+---
+
+⭐ Love it? Please rate and review!
+
+Your feedback helps us improve. Thank you for using Modern New Tab! ❤️
+
+## Category
+Productivity
+
+## Language
+English
+
+## Promotional Text (for notifications)
+New: 15 HD wallpapers + 3 icon modes!

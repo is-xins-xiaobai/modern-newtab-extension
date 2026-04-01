@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Tab</title>
+  <link rel="stylesheet" href="styles/newtab.css">
+</head>
+<body>
+  <!-- Background -->
+  <div id="background-container"></div>
+  
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Clock & Date -->
+    <div class="time-section">
+      <div id="clock" class="clock">00:00</div>
+      <div id="date" class="date">Loading...</div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-section">
+      <div class="search-container">
+        <select id="search-engine" class="search-engine-selector">
+          <option value="google">Google</option>
+          <option value="bing">Bing</option>
+          <option value="duckduckgo">DuckDuckGo</option>
+          <option value="chatgpt">ChatGPT</option>
+        </select>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="Search the web or ask AI..."
+          autocomplete="off"
+        >
+        <button id="search-button" class="search-button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="links-section">
+      <div id="quick-links" class="quick-links"></div>
+      <button id="add-link-btn" class="add-link-btn">+ Add Site</button>
+    </div>
+
+    <!-- Weather Widget -->
+    <div id="weather-widget" class="weather-widget">
+      <div class="weather-icon">🌤️</div>
+      <div class="weather-temp">--°C</div>
+      <div class="weather-location">Loading...</div>
+    </div>
+
+    <!-- Quick Notes Panel -->
+    <div id="notes-panel" class="notes-panel hidden">
+      <div class="panel-header">
+        <h3>Quick Notes</h3>
+        <button id="close-notes" class="close-btn">×</button>
+      </div>
+      <textarea id="notes-textarea" placeholder="Type your notes here..."></textarea>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button id="notes-btn" class="toolbar-btn" title="Notes">
+      📝
+    </button>
+    <button id="bookmarks-btn" class="toolbar-btn" title="Bookmarks">
+      🔖
+    </button>
+    <button id="weather-btn" class="toolbar-btn" title="Weather">
+      🌤️
+    </button>
+    <button id="settings-btn" class="toolbar-btn" title="Settings">
+      ⚙️
+    </button>
+  </div>
+
+  <!-- Settings Panel -->
+  <div id="settings-panel" class="settings-panel hidden">
+    <div class="panel-header">
+      <h3>Settings</h3>
+      <button id="close-settings" class="close-btn">×</button>
+    </div>
+    <div class="settings-content">
+      <div class="setting-item">
+        <label>Background Image:</label>
+        <button id="show-gallery-btn" class="btn-primary">📷 Choose from Gallery</button>
+      </div>
+      <div class="setting-item">
+        <label>Or enter custom URL:</label>
+        <input type="text" id="bg-url-input" placeholder="https://example.com/image.jpg">
+        <button id="save-bg-btn" class="btn-primary">Save Custom URL</button>
+      </div>
+      <div class="setting-item">
+        <label>Background Type:</label>
+        <select id="bg-type">
+          <option value="cover">Cover</option>
+          <option value="contain">Contain</option>
+          <option value="tile">Tile</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <label>Clock Format:</label>
+        <select id="clock-format">
+          <option value="24">24-hour</option>
+          <option value="12">12-hour</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <button id="reset-btn" class="btn-secondary">Reset to Default</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/newtab.js"></script>
+</body>
+</html>
