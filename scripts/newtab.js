@@ -9,7 +9,7 @@ const SEARCH_ENGINES = {
 const DEFAULT_LINKS = [
   { title: 'Gmail', url: 'https://mail.google.com', icon: 'https://logo.clearbit.com/gmail.com' },
   { title: 'YouTube', url: 'https://youtube.com', icon: 'https://logo.clearbit.com/youtube.com' },
-  { title: 'GitHub', url: 'https://github.com', icon: 'https://logo.clearbit.com/github.com' },
+  { title: 'ChatGPT', url: 'https://chat.openai.com', icon: 'https://logo.clearbit.com/openai.com' },
   { title: 'Twitter', url: 'https://twitter.com', icon: 'https://logo.clearbit.com/twitter.com' },
   { title: 'Reddit', url: 'https://reddit.com', icon: 'https://logo.clearbit.com/reddit.com' },
   { title: 'LinkedIn', url: 'https://linkedin.com', icon: 'https://logo.clearbit.com/linkedin.com' }
