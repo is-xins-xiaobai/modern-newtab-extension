@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Create Release Package
+        run: |
+          mkdir -p release
+          cp -r * release/ || true
+          cd release
+          rm -rf .git .github test.html original-extension store-assets
+          cd ..
+          zip -r modern-newtab-extension-${{ github.ref_name }}.zip release/
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: modern-newtab-extension-${{ github.ref_name }}.zip
+          body: |
+            ## Modern New Tab Extension ${{ github.ref_name }}
+            
+            ### Installation
+            1. Download the ZIP file below
+            2. Unzip it
+            3. Go to `chrome://extensions/`
+            4. Enable "Developer mode"
+            5. Click "Load unpacked"
+            6. Select the unzipped folder
+            
+            Or install from Chrome Web Store (coming soon!)
+            
+            ### What's New
+            See [UPDATES.md](https://github.com/is-xins-xiaobai/modern-newtab-extension/blob/main/UPDATES.md) for details.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
