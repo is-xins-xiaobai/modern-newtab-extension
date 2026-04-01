@@ -25,11 +25,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-// Keyboard shortcut handler
-chrome.commands.onCommand.addListener((command) => {
-  if (command === 'open-newtab') {
-    chrome.tabs.create({
-      url: chrome.runtime.getURL('newtab.html')
-    });
-  }
-});
+// Keyboard shortcut handler (optional - only if commands are defined in manifest)
+if (chrome.commands && chrome.commands.onCommand) {
+  chrome.commands.onCommand.addListener((command) => {
+    if (command === 'open-newtab') {
+      chrome.tabs.create({
+        url: chrome.runtime.getURL('newtab.html')
+      });
+    }
+  });
+}
