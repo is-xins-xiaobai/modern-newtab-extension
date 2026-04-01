@@ -7,12 +7,12 @@ const SEARCH_ENGINES = {
 };
 
 const DEFAULT_LINKS = [
-  { title: 'Gmail', url: 'https://mail.google.com', icon: 'https://www.google.com/s2/favicons?domain=mail.google.com&sz=128' },
-  { title: 'YouTube', url: 'https://youtube.com', icon: 'https://www.google.com/s2/favicons?domain=youtube.com&sz=128' },
-  { title: 'GitHub', url: 'https://github.com', icon: 'https://www.google.com/s2/favicons?domain=github.com&sz=128' },
-  { title: 'Twitter', url: 'https://twitter.com', icon: 'https://www.google.com/s2/favicons?domain=twitter.com&sz=128' },
-  { title: 'Reddit', url: 'https://reddit.com', icon: 'https://www.google.com/s2/favicons?domain=reddit.com&sz=128' },
-  { title: 'LinkedIn', url: 'https://linkedin.com', icon: 'https://www.google.com/s2/favicons?domain=linkedin.com&sz=128' }
+  { title: 'Gmail', url: 'https://mail.google.com', icon: 'https://www.google.com/s2/favicons?domain=mail.google.com&sz=256' },
+  { title: 'YouTube', url: 'https://youtube.com', icon: 'https://www.google.com/s2/favicons?domain=youtube.com&sz=256' },
+  { title: 'GitHub', url: 'https://github.com', icon: 'https://www.google.com/s2/favicons?domain=github.com&sz=256' },
+  { title: 'Twitter', url: 'https://twitter.com', icon: 'https://www.google.com/s2/favicons?domain=twitter.com&sz=256' },
+  { title: 'Reddit', url: 'https://reddit.com', icon: 'https://www.google.com/s2/favicons?domain=reddit.com&sz=256' },
+  { title: 'LinkedIn', url: 'https://linkedin.com', icon: 'https://www.google.com/s2/favicons?domain=linkedin.com&sz=256' }
 ];
 
 const WALLPAPER_GALLERY = [
@@ -169,7 +169,7 @@ function initQuickLinks() {
       img.src = link.icon;
       img.alt = link.title;
       img.onerror = () => {
-        img.src = `https://www.google.com/s2/favicons?domain=${link.url}&sz=64`;
+        img.src = `https://www.google.com/s2/favicons?domain=${link.url}&sz=256`;
       };
       icon.appendChild(img);
     } else {
@@ -270,7 +270,7 @@ function initQuickLinks() {
       
       if (type === 'auto' && url) {
         const domain = url.replace(/^https?:\/\//, '').split('/')[0];
-        iconPreview.innerHTML = `<img src="https://www.google.com/s2/favicons?domain=${domain}&sz=128" alt="Preview">`;
+        iconPreview.innerHTML = `<img src="https://www.google.com/s2/favicons?domain=${domain}&sz=256" alt="Preview">`;
       } else if (type === 'emoji' && icon) {
         iconPreview.innerHTML = `<div class="emoji-preview">${icon}</div>`;
       } else if (type === 'url' && icon) {
@@ -298,11 +298,11 @@ function initQuickLinks() {
       const domain = fullUrl.replace(/^https?:\/\//, '').split('/')[0];
       
       if (type === 'auto') {
-        iconValue = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+        iconValue = `https://www.google.com/s2/favicons?domain=${domain}&sz=256`;
       } else if (type === 'emoji') {
         iconValue = iconInput.value.trim() || '🌐';
       } else {
-        iconValue = iconInput.value.trim() || `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+        iconValue = iconInput.value.trim() || `https://www.google.com/s2/favicons?domain=${domain}&sz=256`;
       }
       
       const newLink = { title, url: fullUrl, icon: iconValue };
