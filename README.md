@@ -1,6 +1,13 @@
 # Modern New Tab - AI Enhanced
 
+[![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/is-xins-xiaobai/modern-newtab-extension/releases)
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-orange.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
+
 A beautiful, modern Chrome extension that replaces your New Tab page with a customizable dashboard featuring AI search, quick notes, weather, and more.
+
+🌟 **[Live Demo](#) | [Chrome Web Store](#) | [Report Bug](https://github.com/is-xins-xiaobai/modern-newtab-extension/issues) | [Request Feature](https://github.com/is-xins-xiaobai/modern-newtab-extension/issues)**
 
 ## ✨ Features
 
@@ -45,7 +52,15 @@ A beautiful, modern Chrome extension that replaces your New Tab page with a cust
 - Open source
 - Manifest V3 compliant
 
+## 📸 Screenshots
+
+> Screenshots coming soon! Install and try it yourself.
+
 ## 🚀 Installation
+
+### From Chrome Web Store (Recommended)
+
+> Coming soon! The extension is currently under review.
 
 ### From Source (Development)
 
